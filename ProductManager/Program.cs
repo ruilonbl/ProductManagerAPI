@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using ProductManager.DI.Entidade;
+using ProductManager.Domain.Autenticacao;
 using ProductManager.Domain.Repositorio;
 using ProductManager.Domain.Servico;
 using ProductManager.Infra.Repositorio;
@@ -16,6 +18,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProdutoServico, ProdutoServico>();
 builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
