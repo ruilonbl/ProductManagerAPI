@@ -28,7 +28,7 @@ namespace ProductManager.Infra.Repositorio
 
         public async Task Remover(int id)
         {
-            var product =  ObterPorId(id);
+            var product = await ObterPorId(id);
             _appDbContext.Remove(product);
             await _appDbContext.SaveChangesAsync();
         }
@@ -46,7 +46,7 @@ namespace ProductManager.Infra.Repositorio
 
         public async Task Atualizar(Produto produto)
         {
-            _appDbContext.Add(produto);
+            _appDbContext.Update(produto);
             await _appDbContext.SaveChangesAsync();
         }
 
